@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json()); // JSON body parser
 app.use(express.urlencoded({ extended: true })); // URL Encoded parser
 
-app.use("/api/auth", require("./auth/routes/authRoutes"));
+// Routes
+const authRoutes = require("./auth/routes/authRoutes");
+const productRoutes = require("./components/products/productRoutes");
+app.use("/api/auth", authRoutes)
+app.use("/api/products", productRoutes);
+
 
 app.get("/", (req, res) => {
     res.send("API is running");
